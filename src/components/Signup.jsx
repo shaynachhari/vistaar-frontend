@@ -22,7 +22,7 @@ function SignupForm() {
       });
       localStorage.setItem("token", response.data.token);
       alert("Signup successful!");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error signing up", error);
       alert("Signup failed!");
@@ -48,7 +48,7 @@ function SignupForm() {
         localStorage.setItem("jwtToken", jwtToken);
         setAuthData({ token: jwtToken });
         alert("Google Signup successful!");
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error with Google signup:", error);

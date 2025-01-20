@@ -20,7 +20,7 @@ function LoginForm() {
       });
       localStorage.setItem("token", response.data.token);
       alert("Login successful!");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error logging in", error);
     }
@@ -46,7 +46,7 @@ function LoginForm() {
         const jwtToken = data.token;
         localStorage.setItem('jwtToken', jwtToken);
         setAuthData({ token: jwtToken });
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error with Google login:", error);

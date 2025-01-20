@@ -2,11 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
 import { apiURL } from "../utils/constants";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const { authData, logout } = useContext(AuthContext);
+  const { authData, logout, setAuthData } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const imageDomain = `${apiURL}/uploads`;
+  const navigate = useNavigate();
 
   // Fetch products from the API
   useEffect(() => {
@@ -24,6 +26,8 @@ const Dashboard = () => {
         if (error.response?.status === 401) {
           alert("Unauthorized! Please log in again.");
           logout();
+          setAuthData(null)
+          navigate("/login");
         }
       }
     };
@@ -40,6 +44,8 @@ const Dashboard = () => {
           onClick={() => {
             localStorage.removeItem("jwtToken"); 
             logout(); 
+            setAuthData(null)
+            navigate("/login");
           }}
         >
           Logout
@@ -50,7 +56,6 @@ const Dashboard = () => {
         Here are the available products fetched from the API:
       </p>
 
-      {/* Product Table */}
       {products.length > 0 ? (
         <div className="table-responsive">
           <table className="table table-striped table-bordered shadow-sm">
