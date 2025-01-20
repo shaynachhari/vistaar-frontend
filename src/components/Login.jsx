@@ -19,6 +19,7 @@ function LoginForm() {
         password,
       });
       localStorage.setItem("token", response.data.token);
+      alert("Login successful!");
       navigate("/");
     } catch (error) {
       console.error("Error logging in", error);
